@@ -120,23 +120,6 @@ namespace RemoteTech.API
             module.Target = id;
         }
 
-        public static IEnumerable<string> GetGroundStations()
-        {
-            return RTSettings.Instance.GroundStations.Select(s => ((ISatellite)s).Name);
-        }
-
-        public static Guid GetGroundStationGuid(String name)
-        {
-            MissionControlSatellite groundStation = RTSettings.Instance.GroundStations.Where(station => station.GetName().Equals(name)).FirstOrDefault();
-
-            if (groundStation == null)
-            {
-                return Guid.Empty;
-            }
-
-            return groundStation.mGuid;
-        }
-
         public static Guid GetCelestialBodyGuid(CelestialBody celestialBody)
         {
             return RTUtil.Guid(celestialBody);
@@ -246,6 +229,24 @@ namespace RemoteTech.API
             }
 		}
 
+		#region GroundStations
+		public static IEnumerable<string> GetGroundStations()
+		{
+			return RTSettings.Instance.GroundStations.Select(s => ((ISatellite)s).Name);
+		}
+
+		public static Guid GetGroundStationGuid(String name)
+		{
+			MissionControlSatellite groundStation = RTSettings.Instance.GroundStations.Where(station => station.GetName().Equals(name)).FirstOrDefault();
+
+			if (groundStation == null)
+			{
+				return Guid.Empty;
+			}
+
+			return groundStation.mGuid;
+		}
+
 		public static Guid AddGroundStation(string name, double latitude, double longitude, double height, int body)
 		{
 			RTLog.Notify ("Trying to add groundstation {0}", RTLogLevel.API, name);
@@ -281,5 +282,13 @@ namespace RemoteTech.API
 
             return RTSettings.Instance.RemoveGroundStation(stationid);
         }
-    }
+
+		#endregion
+
+		// ASH Stop dicking about and refresh settings now
+		public static void ReloadRTSettingsNow()
+		{
+			RTSettings.ReloadSettings();
+		}
+	}
 }
