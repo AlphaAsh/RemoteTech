@@ -254,6 +254,20 @@ namespace RemoteTech.API
             return newStationId;
 		}
 
+		// ASH Just a stub atm - need a break
+		public static bool ConfigureGroundStation(Guid stationid)
+		{
+			MissionControlSatellite oStation = RTSettings.Instance.GetGroundStation(stationid);
+
+			if (oStation == null)
+			{
+				RTLog.Notify("Trying to get a groundstation {0} but it does not exist", RTLogLevel.API, stationid);
+				return false;
+			}
+
+			return true;
+		}
+
 		public static bool RemoveGroundStation(Guid stationid)
 		{
 			RTLog.Notify ("Trying to remove groundstation {0}", RTLogLevel.API, stationid);

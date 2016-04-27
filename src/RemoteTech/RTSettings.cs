@@ -272,6 +272,24 @@ namespace RemoteTech
             return newGroundStation.mGuid;
         }
 
+		// Return a GroundStation if it exists
+		public MissionControlSatellite GetGroundStation(Guid stationid)
+		{
+			MissionControlSatellite oStation;
+			
+			for (int i = this.GroundStations.Count - 1; i >= 0; i--)
+			{
+				if (this.GroundStations[i].mGuid.Equals(stationid))
+				{
+					oStation = this.GroundStations[i];
+					return oStation;
+				}
+			}
+
+			RTLog.Notify("Cannot find station {0}", RTLogLevel.LVL1, stationid);
+			return null;
+		}
+
         /// <summary>
         /// Removes a ground station from the list by its unique <paramref name="stationid"/>.
         /// Returns true for a successfull removed station, otherwise false
