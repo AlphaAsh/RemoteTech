@@ -250,6 +250,14 @@ namespace RemoteTech
             this.mGuid = new Guid(Guid);
         }
 
+		public void reloadUpgradeableAntennas(string sRange, string sAngle)
+		{
+			foreach (var antenna in this.Antennas)
+			{
+				antenna.reloadUpgradeableAntennas(sRange, sAngle);
+			}
+		}
+
         public void reloadUpgradeableAntennas(int techlvl = 0)
         {
             foreach (var antenna in this.Antennas)

@@ -255,8 +255,9 @@ namespace RemoteTech.API
             return newStationId;
 		}
 
-		// ASH Just a stub atm - need a break
-		public static bool ConfigureGroundStation(Guid stationid)
+		// ASH Poke a new range and angle straight in to a station's antennas
+		// This allows other mods to decide how their stations get upgraded
+		public static bool DirectConfigureStationAntenna(Guid stationid, float fRange, double dAngle)
 		{
 			MissionControlSatellite oStation = RTSettings.Instance.GetGroundStation(stationid);
 
@@ -265,6 +266,11 @@ namespace RemoteTech.API
 				RTLog.Notify("Trying to get a groundstation {0} but it does not exist", RTLogLevel.API, stationid);
 				return false;
 			}
+
+			string sRange = fRange.ToString();
+			string sAngle = dAngle.ToString();
+
+			oStation.reloadUpgradeableAntennas(sRange, sAngle);
 
 			return true;
 		}

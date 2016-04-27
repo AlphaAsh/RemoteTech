@@ -35,6 +35,12 @@ namespace RemoteTech.Modules
         Guid IAntenna.Target { get { return new Guid(RTSettings.Instance.ActiveVesselGuid); } set { return; } }
         float IAntenna.Dish { get { return Dish; } }
         double IAntenna.CosAngle { get { return CosAngle; } }
+
+		public void reloadUpgradeableAntennas(string sRange, string sAngle)
+		{
+			float.TryParse(sRange, out this.Dish);
+			double.TryParse(sAngle, out this.CosAngle);
+		}
         
         public void reloadUpgradeableAntennas(int techlvl = 0)
         {
