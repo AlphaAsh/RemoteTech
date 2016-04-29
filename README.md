@@ -1,14 +1,8 @@
-[![Build Status](https://travis-ci.org/RemoteTechnologiesGroup/RemoteTech.svg?branch=master)](https://travis-ci.org/RemoteTechnologiesGroup/RemoteTech)
+RemoteTechReTooled
+==================
 
-RemoteTech
-==========
+RTRT is a fork of RemoteTech with the primary goal of simplifying some of the more complex features and making the functions more accessible by other mods, first and foremost, by Kerbal Konstructs.
 
-Community developed continuation of Kerbal Space Program's RemoteTech mod.
+RTRT is unlikely to be in a compilable or releasable state at any time soon and is currently a code dump for changes I'd like to make to RemoteTech but do not want to push over at that.
 
-RemoteTech allows you to construct vast relay networks of communication satellites and remotely controlled unmanned vehicles. Your unmanned vessels require an uplink to a command station to be controlled. This adds a new layer of difficulty that compensates for the lack of live crew members.
-
-[Download Here](https://github.com/RemoteTechnologiesGroup/RemoteTech/releases/latest)
-
-A [detailed manual](http://remotetechnologiesgroup.github.io/RemoteTech) is available on-line.
-
-Questions? Try the [KSP forum thread](http://forum.kerbalspaceprogram.com/threads/83305).
+This fork is licensed GPLv2, as per the original licence for RemoteTech.
