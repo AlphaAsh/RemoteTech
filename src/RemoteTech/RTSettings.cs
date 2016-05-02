@@ -251,6 +251,26 @@ namespace RemoteTech
         /// <param name="longitude">longitude position</param>
         /// <param name="height">height from asl</param>
         /// <param name="body">Referencebody 1=Kerbin etc...</param>
+		/// 
+
+		public bool AddGroundStation(Guid Uid, string name, double latitude, double longitude, double height, int body)
+		{
+			MissionControlSatellite newGroundStation = new MissionControlSatellite();
+			newGroundStation.SetDetails(Uid, name, latitude, longitude, height, body);
+
+			// Already on the list?
+			var foundsat = this.GroundStations.Where(ms => ms.GetDetails().Equals(newGroundStation.GetDetails())).FirstOrDefault();
+			if (foundsat != null)
+			{
+				RTLog.Notify("Groundstation already exists!", RTLogLevel.LVL1);
+				return false;
+			}
+
+			this.GroundStations.Add(newGroundStation);
+			this.Save();
+			return true;
+		}
+
         public Guid AddGroundStation(string name, double latitude, double longitude, double height, int body)
         {
             RTLog.Notify("Trying to add groundstation({0})", RTLogLevel.LVL1, name);

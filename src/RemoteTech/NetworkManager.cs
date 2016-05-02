@@ -250,11 +250,11 @@ namespace RemoteTech
             this.mGuid = new Guid(Guid);
         }
 
-		public void reloadUpgradeableAntennas(string sRange, string sAngle)
+		public void reloadUpgradeableAntennas(string sOmni, string sRange, string sAngle)
 		{
 			foreach (var antenna in this.Antennas)
 			{
-				antenna.reloadUpgradeableAntennas(sRange, sAngle);
+				antenna.reloadUpgradeableAntennas(sOmni, sRange, sAngle);
 			}
 		}
 
@@ -278,6 +278,16 @@ namespace RemoteTech
 			this.Body = body;
 			this.mGuid = System.Guid.NewGuid ();
 			this.Guid = this.mGuid.ToString ();
+		}
+
+		public void SetDetails(Guid Uid, String name, double lat, double longi, double height, int body)
+		{
+			this.Name = name;
+			this.Latitude = lat;
+			this.Longitude = longi;
+			this.Height = height;
+			this.Body = body;
+			this.Guid = Uid.ToString();
 		}
 
 		public String GetDetails()

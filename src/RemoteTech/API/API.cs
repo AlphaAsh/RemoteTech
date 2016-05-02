@@ -255,9 +255,17 @@ namespace RemoteTech.API
             return newStationId;
 		}
 
+		public static bool AddGroundStation(string sUid, string name, double latitude, double longitude, double height, int body)
+		{
+			RTLog.Notify("Trying to add groundstation {0}", RTLogLevel.API, name);
+			Guid StationId = new Guid(sUid);
+			bool bAdded = RTSettings.Instance.AddGroundStation(StationId, name, latitude, longitude, height, body);
+			return bAdded;
+		}
+
 		// ASH Poke a new range and angle straight in to a station's antennas
 		// This allows other mods to decide how their stations get upgraded
-		public static bool DirectConfigureStationAntenna(Guid stationid, float fRange, double dAngle)
+		public static bool DirectConfigureStationAntenna(Guid stationid, float fOmni, float fRange, double dAngle)
 		{
 			MissionControlSatellite oStation = RTSettings.Instance.GetGroundStation(stationid);
 
@@ -267,10 +275,11 @@ namespace RemoteTech.API
 				return false;
 			}
 
+			string sOmni = fOmni.ToString();
 			string sRange = fRange.ToString();
 			string sAngle = dAngle.ToString();
 
-			oStation.reloadUpgradeableAntennas(sRange, sAngle);
+			oStation.reloadUpgradeableAntennas(sOmni, sRange, sAngle);
 
 			return true;
 		}

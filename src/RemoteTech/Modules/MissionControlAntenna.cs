@@ -5,7 +5,7 @@ namespace RemoteTech.Modules
 {
     public sealed class MissionControlAntenna : IAntenna
     {
-        [Persistent] public float Omni = 75000000;
+        [Persistent] public float Omni = 90000;
         [Persistent] public float Dish = 0.0f;
         [Persistent] public double CosAngle = 1.0;
 
@@ -36,8 +36,9 @@ namespace RemoteTech.Modules
         float IAntenna.Dish { get { return Dish; } }
         double IAntenna.CosAngle { get { return CosAngle; } }
 
-		public void reloadUpgradeableAntennas(string sRange, string sAngle)
+		public void reloadUpgradeableAntennas(string sOmni, string sRange, string sAngle)
 		{
+			float.TryParse(sOmni, out this.Omni);
 			float.TryParse(sRange, out this.Dish);
 			double.TryParse(sAngle, out this.CosAngle);
 		}
